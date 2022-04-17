@@ -14,7 +14,7 @@ class AppKtTest {
         /* Check cards */
         for(i in 0..3) {
             result = calculateTransfer(cards[i],transferAmount,totalTransferAmount)
-            assertNotEquals(0U,result)
+            assertEquals(0U,result)
         }
         for(i in 4..5) {
             result = calculateTransfer(cards[i],transferAmount,totalTransferAmount)
