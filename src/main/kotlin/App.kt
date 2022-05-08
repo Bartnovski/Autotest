@@ -10,14 +10,16 @@ fun main() {
 
 fun calculateTransfer(cardType: String, amount: UInt, totalTransferAmount: UInt): UInt {
 
-    when (cardType) {
-        "MasterCard" -> return if (totalTransferAmount >= 75_000_00U) ((amount.toDouble() * 0.006) + 20_00).toUInt()
+    return when (cardType) {
+        "MasterCard" -> if (totalTransferAmount >= 75_000_00U) ((amount.toDouble() * 0.006) + 20_00).toUInt()
         else 0U
-        "Maestro" -> return if (totalTransferAmount >= 75_000_00U) ((amount.toDouble() * 0.006) + 20_00).toUInt()
+        "Maestro" -> if (totalTransferAmount >= 75_000_00U) ((amount.toDouble() * 0.006) + 20_00).toUInt()
         else 0U
-        "Visa" -> return if (((amount.toDouble() * 0.0075) + 20_00).toUInt() < 35_00U) 35_00U else ((amount.toDouble() * 0.0075) + 20_00).toUInt()
-        "МИР" -> return if (((amount.toDouble() * 0.0075) + 20_00).toUInt() < 35_00U) 35_00U else ((amount.toDouble() * 0.0075) + 20_00).toUInt()
+        "Visa" -> if (((amount.toDouble() * 0.0075) + 20_00).toUInt() < 35_00U) 35_00U else ((amount.toDouble() * 0.0075) + 20_00).toUInt()
+        "МИР" -> if (((amount.toDouble() * 0.0075) + 20_00).toUInt() < 35_00U) 35_00U else ((amount.toDouble() * 0.0075) + 20_00).toUInt()
+        else -> {
+            println("Не корректный тип карты")
+            0U
+        }
     }
-    if (cardType != "VK Pay") println("Не корректный тип карты")
-    return 0U
 }
